@@ -16,10 +16,10 @@ http.route({
     }
 
     const svix_id = request.headers.get("svix-id");
-    const svix_timestamp = request.headers.get("svix-timestamp");
     const svix_signature = request.headers.get("svix-signature");
+    const svix_timestamp = request.headers.get("svix-timestamp");
 
-    if (!svix_id || !svix_timestamp || !svix_signature) {
+    if (!svix_id || !svix_signature || !svix_timestamp) {
       return new Response("Missing svix headers", { status: 400 });
     }
 
@@ -31,12 +31,12 @@ http.route({
 
     try {
       evt = wh.verify(body, {
-        svix_id: svix_id,
-        svix_timestamp: svix_timestamp,
-        svix_signature: svix_signature,
+        "svix-id": svix_id,
+        "svix-timestamp": svix_timestamp,
+        "svix-signature": svix_signature,
       }) as WebhookEvent;
     } catch (err) {
-      console.error(err);
+      console.error("Error verifying svix payload---:", err);
       return new Response("Invalid svix payload", { status: 400 });
     }
 
@@ -57,12 +57,12 @@ http.route({
           image: image_url,
         });
       } catch (error) {
-        console.error(error);
+        console.error("Error creating user:", error);
         return new Response("Failed to sync user", { status: 500 });
       }
     }
 
-    return new Response("Webhook received", { status: 200 });
+    return new Response("Webhook processed successfully", { status: 200 });
   }),
 });
 

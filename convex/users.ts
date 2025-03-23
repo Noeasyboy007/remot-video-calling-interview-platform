@@ -2,9 +2,9 @@ import { mutation } from "./_generated/server";
 import { v } from "convex/values";
 export const syncUser = mutation({
   args: {
-    clerkId: v.string(),
     email: v.string(),
     name: v.string(),
+    clerkId: v.string(),
     image: v.optional(v.string()),
   },
 
@@ -18,7 +18,7 @@ export const syncUser = mutation({
 
     return await ctx.db.insert("users", {
       ...args,
-      phone: "",
+      //   phone: "",
       role: "candidate",
     });
   },
