@@ -6,7 +6,7 @@ import Navbar from "@/components/navbar/Navbar";
 import { ThemeProvider } from "@/components/ui/providers/ThemeProvider";
 import { RedirectToSignIn, SignedIn } from "@clerk/nextjs";
 import { SignedOut } from "@clerk/nextjs";
-
+import { Toaster } from "react-hot-toast";
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -53,6 +53,7 @@ export default function RootLayout({
               <RedirectToSignIn />
             </SignedOut>
           </ThemeProvider>
+          <Toaster />
         </body>
       </html>
     </ConvexClerkProvider>
