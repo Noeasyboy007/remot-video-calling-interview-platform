@@ -4,6 +4,8 @@ import "./globals.css";
 import ConvexClerkProvider from "@/components/ui/providers/ConvexClerkProvider";
 import Navbar from "@/components/navbar/Navbar";
 import { ThemeProvider } from "@/components/ui/providers/ThemeProvider";
+import { RedirectToSignIn, SignedIn } from "@clerk/nextjs";
+import { SignedOut } from "@clerk/nextjs";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -38,12 +40,18 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <div className="max-h-screen">
-              <Navbar />
-              <div className="flex-1 overflow-auto">
-                <main className="px-4 sm:px-6 lg:px-8">{children}</main>
+            <SignedIn>
+              <div className="max-h-screen">
+                <Navbar />
+                <div className="flex-1 overflow-auto">
+                  <main className="px-4 sm:px-6 lg:px-8">{children}</main>
+                </div>
               </div>
-            </div>
+            </SignedIn>
+
+            <SignedOut>
+              <RedirectToSignIn />
+            </SignedOut>
           </ThemeProvider>
         </body>
       </html>
