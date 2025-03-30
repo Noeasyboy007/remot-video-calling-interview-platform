@@ -3,9 +3,10 @@ import { SignInButton } from "@clerk/nextjs";
 export default function Home() {
   return (
     <div className="m-10">
-      <SignInButton>
+      {/* <SignInButton>
         <Button>Login</Button>
-      </SignInButton>
+      </SignInButton> */}
+      <div>Home Page</div>
     </div>
   );
 }
