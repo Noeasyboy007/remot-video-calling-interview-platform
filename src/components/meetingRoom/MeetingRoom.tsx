@@ -21,6 +21,7 @@ import {
 } from "../ui/dropdown-menu";
 import { DropdownMenu } from "../ui/dropdown-menu";
 import { Button } from "../ui/button";
+import EndCallButton from "../endCallButton/EndCallButton";
 
 export default function MeetingRoom() {
   const router = useRouter();
@@ -93,8 +94,8 @@ export default function MeetingRoom() {
                     <UsersIcon className="size-4" />
                   </Button>
 
-                  {/* <EndCallButton /> */}
-                  <button>end call</button>
+                  <EndCallButton />
+                  {/* <button>end call</button> */}
                 </div>
               </div>
             </div>
