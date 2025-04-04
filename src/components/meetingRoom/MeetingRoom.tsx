@@ -24,7 +24,7 @@ import { Button } from "../ui/button";
 import EndCallButton from "../endCallButton/EndCallButton";
 import CodeEditor from "../codeEditor/CodeEditor";
 
-export default function MeetingRoom() {
+function MeetingRoom() {
   const router = useRouter();
   const [layout, setLayout] = useState<"grid" | "speaker">("speaker");
   const [showParticipants, setShowParticipants] = useState(false);
@@ -63,11 +63,13 @@ export default function MeetingRoom() {
             )}
           </div>
 
-          {/* VIDEO CONTROLLER*/}
+          {/* VIDEO CONTROLS */}
+
           <div className="absolute bottom-4 left-0 right-0">
             <div className="flex flex-col items-center gap-4">
               <div className="flex items-center gap-2 flex-wrap justify-center px-4">
                 <CallControls onLeave={() => router.push("/")} />
+
                 <div className="flex items-center gap-2">
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -75,7 +77,6 @@ export default function MeetingRoom() {
                         <LayoutListIcon className="size-4" />
                       </Button>
                     </DropdownMenuTrigger>
-
                     <DropdownMenuContent>
                       <DropdownMenuItem onClick={() => setLayout("grid")}>
                         Grid View
@@ -94,7 +95,7 @@ export default function MeetingRoom() {
                   >
                     <UsersIcon className="size-4" />
                   </Button>
-                  {/* END CALL BUTTON */}
+
                   <EndCallButton />
                 </div>
               </div>
@@ -105,10 +106,11 @@ export default function MeetingRoom() {
         <ResizableHandle withHandle />
 
         <ResizablePanel defaultSize={65} minSize={25}>
-          {/* CODE EDITOR */}
           <CodeEditor />
         </ResizablePanel>
       </ResizablePanelGroup>
     </div>
   );
 }
+
+export default MeetingRoom;
